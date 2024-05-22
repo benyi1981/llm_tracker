@@ -1,0 +1,34 @@
+# Configuration for LLMTracker
+
+# Storage backend configuration
+storage_backend: json_file  # Options: json_file, sqlite, cloud_storage
+
+# JSON file storage configuration
+json_file_path: './data/llm_tracker_data.json'
+
+# SQLite storage configuration
+sqlite_database: './data/llm_tracker_data.sqlite'
+
+# Cloud storage configuration
+cloud_storage:
+  provider: aws_s3  # Options: aws_s3, gcp_storage, azure_blob
+  aws_s3:
+    bucket_name: your-bucket-name
+    region: your-region
+    access_key_id: your-access-key-id
+    secret_access_key: your-secret-access-key
+
+# Logging configuration (optional)
+logging:
+  level: INFO  # Options: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  file: './logs/llm_tracker.log'
+  
+# Metadata keys
+metadata_keys:
+  - user_id
+  - org_id
+  - prompt_id
+  - prompt_version_id
+  - campaign
+  - source
+  - medium

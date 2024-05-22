@@ -1,9 +1,9 @@
 import asyncio
-from tiktoken import Tokenizer
 from .storage.json_storage import JSONStorage
 from .storage.sqlite_storage import SQLiteStorage
 from .storage.cloud_storage import CloudStorage
 from .utils.config_loader import load_config
+from .utils.token_utils import num_tokens_from_string
 
 class LLMTracker:
     def __init__(self, config_file='config.json', **tags):
@@ -18,14 +18,16 @@ class LLMTracker:
         elif backend_type == 'sqlite':
             return SQLiteStorage(self.config)
         elif backend_type == 'cloud_storage':
-            return CloudStorage(self.config)
+            cloud_provider = self.config['cloud_storage']['provider']
+            if cloud_provider == 'aws_s3':
+                return CloudStorage(self.config)
         else:
             raise ValueError("Unsupported storage backend")
 
     async def record_input_metadata(self, request_data: dict):
         prompt = " ".join([msg['content'] for msg in request_data['messages']])
-        tokenizer = Tokenizer()
-        prompt_tokens = len(tokenizer.encode(prompt))
+        model = request_data["model"]
+        prompt_tokens = num_tokens_from_string(prompt, model)
 
         metadata = {key: value for key, value in request_data.items() if key not in ['messages', 'api_key']}
         metadata.update(self.tags)  # Include arbitrary tags
@@ -39,7 +41,7 @@ class LLMTracker:
 
         self.metadata_storage[request_data['metadata_key']] = metadata  # Store metadata using a unique key
 
-        await self.storage_backend.save(usage_data)
+        self.storage_backend.save(usage_data)
         return usage_data
 
     async def record_output_metadata(self, request_data: dict, response_data: dict):
@@ -53,11 +55,11 @@ class LLMTracker:
             'metadata': metadata
         }
 
-        await self.storage_backend.save(usage_data)
+        self.storage_backend.save(usage_data)
         return {
             'response_data': response_data,
             'usage_data': usage_data
         }
 
     async def get_usage(self):
-        return await self.storage_backend.load()
+        return self.storage_backend.load()

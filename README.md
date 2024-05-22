@@ -9,9 +9,16 @@ LLM Tracker is a library to track token usage and cost by end user, prompt id, o
 - Visualization of token usage and metadata distribution
 
 ## Installation
-
 ```bash
 pip install llm_tracker
+
+## Configuration
+Copy the example configuration file:
+
+cp config.example.yaml config.yaml
+
+Edit config.yaml with your specific settings
+
 
 ## Usage
 from llm_tracker import LLMTracker
