@@ -46,7 +46,7 @@ class LLMTracker:
 
     async def record_output_metadata(self, request_data: dict, response_data: dict):
         metadata_key = request_data['metadata_key']
-        metadata = self.metadata_storage.get(metadata_key, {})  # Retrieve stored metadata
+        metadata = self.metadata_storage[metadata_key]  # Retrieve stored metadata
 
         usage_data = {
             'prompt_tokens': response_data['usage']['prompt_tokens'],
