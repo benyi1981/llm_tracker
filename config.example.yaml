@@ -4,7 +4,8 @@
 storage_backend: json_file  # Options: json_file, sqlite, cloud_storage
 
 # JSON file storage configuration
-json_file_path: './data/llm_tracker_data.json'
+json_file:
+  file_path: './data/llm_tracker_data.json'
 
 # SQLite storage configuration
 sqlite_database: './data/llm_tracker_data.sqlite'

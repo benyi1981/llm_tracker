@@ -7,6 +7,9 @@ class JSONStorage(StorageBackend):
         self.file_path = config['json_file']['file_path']
 
     def save(self, data: dict):
+        # Create the directory if it doesn't exist
+        os.makedirs(os.path.dirname(self.file_path), exist_ok=True)
+
         if os.path.exists(self.file_path):
             with open(self.file_path, "r") as file:
                 existing_data = json.load(file)

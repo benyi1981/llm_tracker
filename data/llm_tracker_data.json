@@ -1,0 +1,56 @@
+[
+    {
+        "prompt_tokens": 13,
+        "completion_tokens": 0,
+        "total_tokens": 13,
+        "metadata": {
+            "model": "gpt-3.5-turbo",
+            "metadata_key": "live_test_key"
+        }
+    },
+    {
+        "prompt_tokens": 13,
+        "completion_tokens": 0,
+        "total_tokens": 13,
+        "metadata": {
+            "model": "gpt-3.5-turbo",
+            "metadata_key": "live_test_key"
+        }
+    },
+    {
+        "prompt_tokens": 13,
+        "completion_tokens": 0,
+        "total_tokens": 13,
+        "metadata": {
+            "model": "gpt-3.5-turbo",
+            "metadata_key": "live_test_key"
+        }
+    },
+    {
+        "prompt_tokens": 13,
+        "completion_tokens": 0,
+        "total_tokens": 13,
+        "metadata": {
+            "model": "gpt-3.5-turbo",
+            "metadata_key": "live_test_key"
+        }
+    },
+    {
+        "prompt_tokens": 13,
+        "completion_tokens": 0,
+        "total_tokens": 13,
+        "metadata": {
+            "model": "gpt-3.5-turbo",
+            "metadata_key": "live_test_key"
+        }
+    },
+    {
+        "prompt_tokens": 13,
+        "completion_tokens": 0,
+        "total_tokens": 13,
+        "metadata": {
+            "model": "gpt-3.5-turbo",
+            "metadata_key": "live_test_key"
+        }
+    }
+]
